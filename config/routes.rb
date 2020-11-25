@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users
+  resources :user_categories, except: [:show]
+  resources :categories
+  resources :articles
+
+  get '/user_articles/:user_id', to: 'articles#user_articles'
+  get '/user_categories/:user_id', to: 'user_categories#user_categories'
+  post '/login', to: 'auth#create'
+  post '/signup', to: 'users#create'
+  delete '/logout', to: 'auth#delete'
 end
