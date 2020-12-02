@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       token = encode_token({ user_id: user.id })
       render json: { user: UserSerializer.new(user), jwt: token }, status: :created
     else
-      render json: user.errors.messages, status: :not_acceptable
+      render json: { message: 'Email Existed' }, status: :not_acceptable
     end
   end
 
